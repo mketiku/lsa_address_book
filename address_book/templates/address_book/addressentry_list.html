@@ -1,6 +1,6 @@
 {% extends 'base.html' %} {% block content %}
-    <h1>Address Entries</h1>
-    <table class="table">
+    <h1>Address Book</h1>
+    <table class="table" id="addressbook">
         <thead>
         <tr>
             <th>#</th>
@@ -8,8 +8,11 @@
             <th>Last Name</th>
             <th>Email</th>
             <th>Street Address</th>
+            <th>Actions</th>
         </tr>
         </thead>
+    <tbody>
+
         {% for address in object_list %}
             <tr>
                 <td>{{ address.id }}</td>
@@ -30,6 +33,17 @@
                 <td colspan="8" class="text-center bg-warning">No address available</td>
             </tr>
         {% endfor %}
+    </tbody>
     </table>
-    <a href="{% url "address_new" %}">New Entry</a>
+            <a class="btn btn-default btn-sm" role="button" href="{% url "address_new" %}">New Entry</a>
+
+{% endblock %}
+{% block javascript %}
+    <script type="application/javascript">
+        $(document).ready(function () {
+
+           console.log("here");
+           $('#addressbook').dataTable();
+        });
+    </script>
 {% endblock %}

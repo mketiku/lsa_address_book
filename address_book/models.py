@@ -19,3 +19,8 @@ class AddressEntry(models.Model):
             self.street_address)
 
         return res
+    def __repr__(self):
+        res = "Name: {}".format(
+            self.name)
+
+        return res
