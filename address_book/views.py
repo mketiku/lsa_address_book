@@ -22,20 +22,20 @@ class AddressForm(ModelForm):
         fields =  ['first_name', 'last_name', 'email_address', 'street_address']
 
 # @login_required(login_url="login/")
-def address_list(request, template_name='address_book/addressentry_list.html'):
+def address_list(request, template_name='address_book/list.html'):
     address_entries = AddressEntry.objects.all()
     data = {}
     data['object_list'] = address_entries
     return render(request, template_name, data)
 
-def address_create(request, template_name='address_book/addressentry_form.html'):
+def address_create(request, template_name='address_book/form.html'):
     form = AddressForm(request.POST or None)
     if form.is_valid():
         form.save()
         return redirect('address_list')
     return render(request, template_name, {'form':form})
 
-def address_update(request, pk, template_name='address_book/addressentry_form.html'):
+def address_update(request, pk, template_name='address_book/form.html'):
     address_entry = get_object_or_404(AddressEntry, pk=pk)
     form = AddressForm(request.POST or None, instance=address_entry)
     if form.is_valid():
@@ -43,7 +43,7 @@ def address_update(request, pk, template_name='address_book/addressentry_form.ht
         return redirect('address_list')
     return render(request, template_name, {'form':form})
 
-def address_delete(request, pk, template_name='address_book/addressentry_confirm_delete.html'):
+def address_delete(request, pk, template_name='address_book/delete.html'):
     address_entry = get_object_or_404(AddressEntry, pk=pk)
     if request.method=='POST':
         address_entry.delete()
