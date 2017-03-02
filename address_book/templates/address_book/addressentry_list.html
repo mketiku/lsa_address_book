@@ -41,9 +41,9 @@
 {% block javascript %}
     <script type="application/javascript">
         $(document).ready(function () {
-
-           console.log("here");
-           $('#addressbook').dataTable();
+           $('#addressbook').dataTable({
+               "lengthMenu": [[10, -1], [10, "All"]]
+           });
         });
     </script>
 {% endblock %}
