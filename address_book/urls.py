@@ -1,9 +1,9 @@
-from django.conf.urls import include, url
+from django.conf.urls import patterns, url
 from . import views
 
-urlpatterns = [
-    url(r'^$', views.AddressList.as_view(), name='address_list'),
-    url(r'^new$', views.AddressCreate.as_view(), name='address_new'),
-    url(r'^edit/(?P<pk>\d+)$', views.AddressUpdate.as_view(), name='address_edit'),
-    url(r'^delete/(?P<pk>\d+)$', views.AddressDelete.as_view(), name='address_delete'),
-]
+urlpatterns = patterns('',
+                       url(r'^$', views.address_list, name='address_list'),
+                       url(r'^new$', views.address_create, name='address_new'),
+                       url(r'^edit/(?P<pk>\d+)$', views.address_update, name='address_edit'),
+                       url(r'^delete/(?P<pk>\d+)$', views.address_delete, name='address_delete'),
+                       )
