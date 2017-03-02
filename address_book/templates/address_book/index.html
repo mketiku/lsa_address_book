@@ -1,0 +1,20 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="row">
+    <div class="jumbotron">
+        <h1>Hello</h1>
+        <p>You are on your addressbook Dashboard</p>
+    </div>
+</div>
+<div class="row">
+    {% if addressbook_list %}
+    <ul>
+        {% for entry in addressbook_list %}
+        <li><a href="{% url 'addressbook:detail' addressbook.id %}">{{ addressbook.lastname }}</a></li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No addressbooks are available.</p>
+    {% endif %}
+</div>
+{% endblock %}
